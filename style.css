@@ -1,0 +1,50 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: sans-serif;
+    background-color: rgb(87, 79, 79); 
+}
+
+a,
+p,
+li,
+button {
+    text-decoration: none;
+    color: white;
+
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    font-family: 500;
+    font-size: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    letter-spacing: .2em;
+}
+.nav-links li{
+    list-style: none;
+    display: inline-block;
+}
+.nav-links li a{
+    margin: 0 15px;
+    transition: all .4s ease 0s;
+}
+.nav-links li a:hover{
+    color: #ff5733;
+}
+button{
+    border: none;
+    margin-right: 20px;
+    background-color: #ff5733;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    transition: all .4s ease 0s;
+}
+button:hover{
+    color: rgb(21, 21, 9);
+}
