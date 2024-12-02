@@ -30,7 +30,7 @@ const Users = () => {
                         key={user._id}
                         > {user.name} : {user.email} {user._id}
                         <Link to={`/update/${user._id}`}>
-                            <button>Update</button>
+                            <button>Update User</button>
                         </Link>
                         <button
                             onClick={ () =>handleDelete(user._id)}
