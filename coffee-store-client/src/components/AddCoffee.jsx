@@ -16,10 +16,10 @@ const AddCoffee = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Avilable Coffee</span>
+                            <span className="label-text">Avilable Coffee Quantity</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" placeholder="Avilebale Coffie" className="input input-bordered" />
+                            <input type="text" placeholder="Avilebale Coffie Cuantity" className="input input-bordered" />
                         </label>
                     </div>
                 </div>
