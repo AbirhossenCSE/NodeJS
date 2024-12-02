@@ -2,10 +2,10 @@ import React from 'react';
 
 const AddCoffee = () => {
     return (
-        <div>
-            <h2>Add Coffee</h2>
+        <div className='bg-[#F4F3F0] p-24'>
+            <h2 className='text-3xl font-extrabold'>Add Coffee</h2>
             <form>
-                <div className='flex w-8/12 mx-auto gap-5'>
+                <div className='flex'>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Coffie Name</span>
