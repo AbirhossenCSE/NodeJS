@@ -29,7 +29,7 @@ async function run() {
     const coffeeCollection = client.db('CoffeeDB').collection('coffee');
 
     // show the data on api link
-    app.get('/coffee', async(req, res) => {
+    app.get('/coffee', async (req, res) => {
       const cursor = coffeeCollection.find();
       const result = await cursor.toArray();
       res.send(result);
@@ -37,16 +37,36 @@ async function run() {
     // get by one id
     app.get('/coffee/:id', async (req, res) => {
       const id = req.params.id;
-      const query = {_id: new ObjectId(id)}
+      const query = { _id: new ObjectId(id) }
       const result = await coffeeCollection.findOne(query);
       res.send(result);
     })
 
     // Post data
-    app.post('/coffee', async(req, res) =>{
+    app.post('/coffee', async (req, res) => {
       const newCoffee = req.body;
       console.log(newCoffee);
       const result = await coffeeCollection.insertOne(newCoffee);
+      res.send(result);
+    })
+    // update
+    app.put('/coffee/:id', async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) }
+      const options = { upsert: true };
+      const updatedCoffee = req.body;
+      const coffee = {
+        $set: {
+          name: updatedCoffee.name,
+          quantity: updatedCoffee.quantity,
+          supplier: updatedCoffee.supplier,
+          taste: updatedCoffee.taste,
+          category: updatedCoffee.category,
+          details: updatedCoffee.details,
+          photo: updatedCoffee.photo
+        }
+      }
+      const result = await coffeeCollection.updateOne(filter, coffee, options);
       res.send(result);
     })
 
@@ -72,11 +92,11 @@ run().catch(console.dir);
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) =>{
-    res.send('Coffie makking server is running')
+app.get('/', (req, res) => {
+  res.send('Coffie makking server is running')
 })
 
-app.listen(port, ()=>{
-    console.log(`Coffee server is running on port: ${port}`);
-    
+app.listen(port, () => {
+  console.log(`Coffee server is running on port: ${port}`);
+
 })
