@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUp = () => {
 
@@ -21,20 +22,29 @@ const SignUp = () => {
 
                 const newUser = { name, email, createAt }
 
+
                 // save new user to the database
-                fetch('http://localhost:5000/users', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(newUser)
-                })
-                    .then(res => res.json())
+                // using axios
+                axios.post('http://localhost:5000/users', newUser)
                     .then(data => {
-                        if (data.insertedId) {
-                            alert('user created');
+                        if (data.data.insertedId) {
+                            console.log('data added successfully');
                         }
                     })
+                // using fetxh
+                // fetch('http://localhost:5000/users', {
+                //     method: 'POST',
+                //     headers: {
+                //         'content-type': 'application/json'
+                //     },
+                //     body: JSON.stringify(newUser)
+                // })
+                //     .then(res => res.json())
+                //     .then(data => {
+                //         if (data.insertedId) {
+                //             alert('user created');
+                //         }
+                //     })
             })
             .catch(error => {
                 console.log('error', error)
