@@ -16,7 +16,7 @@ const SignIn = () => {
             .then(result => {
                 console.log(result.user);
 
-                // update last login time
+                // update last signin time 
                 const lastSignInTime = result?.user?.metadata?.lastSignInTime;
                 const loginInfo = { email, lastSignInTime }
 
