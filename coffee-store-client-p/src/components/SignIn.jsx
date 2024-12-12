@@ -19,8 +19,9 @@ const SignIn = () => {
                 // update last login time
                 const lastSignInTime = result?.user?.metadata?.lastSignInTime;
                 const loginInfo = { email, lastSignInTime }
-                // signin
-                // axios
+
+                // signin user to the system
+                // axios 
                 axios.patch('http://localhost:5000/users', loginInfo)
                     .then(data => {
                         console.log(data.data)
