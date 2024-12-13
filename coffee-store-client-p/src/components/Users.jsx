@@ -7,6 +7,7 @@ const Users = () => {
     const loadedUsers = useLoaderData();
     const [users, setUsers] = useState(loadedUsers);
 
+    // it make easy fetch
     // useEffect(() => {
     //     fetch('/')
     //     .then(res => res.json())
