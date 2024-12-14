@@ -1,7 +1,15 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 
 const Users2 = () => {
-    const [users, setUsers] = useState([]);
+    // const [users, setUsers] = useState([]);
+    const { isLoading, isError, data: users} = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/users');
+            return res.json();
+        }
+    })
 
     const handleUserDelete = id => {
         Swal.fire({
@@ -41,6 +49,12 @@ const Users2 = () => {
 
             }
         });
+    }
+    if (isLoading) {
+        return <span className="loading loading-dots loading-lg"></span>;
+    }
+    if (isError) {
+        return <p>{error.message}</p>
     }
 
     return (
