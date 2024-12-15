@@ -36,7 +36,7 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     })
-    // get by one id
+    // get by Specific id
     app.get('/coffee/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) }
@@ -51,7 +51,7 @@ async function run() {
       const result = await coffeeCollection.insertOne(newCoffee);
       res.send(result);
     })
-    // update
+    // update Data
     app.put('/coffee/:id', async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) }
@@ -72,7 +72,7 @@ async function run() {
       res.send(result);
     })
 
-    // delete data
+    // Delete Data
     app.delete('/coffee/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
@@ -80,7 +80,8 @@ async function run() {
       res.send(result);
     })
 
-    // users related apis
+    
+    // Users related apis
     app.get('/users', async (req, res) => {
       const cursor = userCollection.find();
       const result = await cursor.toArray();
