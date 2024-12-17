@@ -11,6 +11,7 @@ const Update = () => {
         console.log(name, email);
         const updatedUser = { name, email }
 
+        // Update data
         fetch(`http://localhost:5000/users/${loadedUser._id}`, {
             method: 'PUT',
             headers: {
