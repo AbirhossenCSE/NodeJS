@@ -1,14 +1,25 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext/AuthContext';
+import jobIcon from '../../assets/logo.png'
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, signOutUser } = useContext(AuthContext);
+    const handleSignOut = () => {
+        signOutUser()
+            .then(() => {
+                console.log('successful');
+            })
+            .catch(error => {
+                console.log('Failed');
+            })
+    }
 
     const links = <>
-        <li><a>Item 1</a></li>
-        <li><a>Parent</a></li>
-        <li><a>Item 3</a></li>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/'>Home</NavLink></li>
+        
     </>
 
     return (
@@ -35,7 +46,10 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <a className="btn btn-ghost text-xl">
+                    <img className='w-10' src={jobIcon} alt="" />
+                    <h3 className='font-bold text-blue-500'>Job Portal</h3>
+                </a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -45,14 +59,12 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user ? <>
-                        <button className='btn'>Log Out</button>
+                        <button onClick={handleSignOut} className='btn'>Sign Out</button>
                     </> : <>
-                        <Link to='/register'>Register</Link>
+                        <Link to='/register' className='mr-2'>Register</Link>
                         <Link to='/signin'>Sign-In</Link>
                     </>
                 }
-
-
             </div>
         </div>
     );
