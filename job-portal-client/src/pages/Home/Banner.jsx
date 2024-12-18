@@ -9,13 +9,13 @@ const Banner = () => {
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className='flex-1'>
                     <motion.img
-                        animate={{ y: [0, 30, 0]}}
-                        transition={{duration: 5, repeat: Infinity}}
+                        animate={{ y: [50, 100, 50]}}
+                        transition={{duration: 10, repeat: Infinity}}
                         src={team1}
                         className="max-w-sm rounded-t-[40px] rounded-br-[40px] border-blue-400 border-l-4 border-b-4 shadow-2xl" />
                     <motion.img
                         animate={{ x: [100, 150, 100]}}
-                        transition={{duration: 5, repeat: Infinity}}
+                        transition={{duration: 10, delay: 5, repeat: Infinity}}
                         src={team2}
                         className="max-w-sm rounded-t-[40px] rounded-br-[40px] border-blue-400 border-l-4 border-b-4 shadow-2xl" />
                 </div>
