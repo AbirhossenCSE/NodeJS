@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import signinLottile from '../../assets/Lottile/register.json'
+import signinLottile from '../../assets/Lottile/signin.json'
 import Lottie from 'lottie-react';
 import AuthContext from '../../context/AuthContext/AuthContext';
 
 const SignIn = () => {
-    const { createUser } = useContext(AuthContext);
+    const { signInUser } = useContext(AuthContext);
     const handleSignIn = e => {
         e.preventDefault();
         const form = e.target;
@@ -12,8 +12,14 @@ const SignIn = () => {
         const password = form.password.value;
         console.log(email, password);
 
-        // password validation
-        // Create user
+        // signin user
+        signInUser(email, password)
+            .then(result => {
+                console.log("signin", result.user);
+            })
+            .catch(error => {
+                console.log(error);
+            })
 
     }
 
@@ -24,7 +30,7 @@ const SignIn = () => {
                     <Lottie animationData={signinLottile}></Lottie>
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    <h1 className="mx-auto mt-5 text-5xl font-bold">Register now!</h1>
+                    <h1 className="mx-auto mt-5 text-5xl font-bold">Sign-In now!</h1>
                     <form onSubmit={handleSignIn} className="card-body">
                         <div className="form-control">
                             <label className="label">
