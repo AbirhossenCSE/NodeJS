@@ -61,6 +61,7 @@ async function run() {
                 if (job) {
                     application.title = job.title;
                     application.company = job.company;
+                    application.company_logo = job.company_logo;
                 }
             }
 
