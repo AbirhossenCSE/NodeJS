@@ -45,6 +45,16 @@ async function run() {
     }) 
 
     // Job apllication API
+    
+    // get all data, get one  data, get some data
+    // get data by email {http://localhost:5000/job-applications?email=abir@gmail.com}
+    app.get('/job-applications', async(req, res) => {
+        const email = req.query.email;
+        const query = { applicant_email: email}
+        const result = await jobApplicationCollection.find(query).toArray();
+        res.send(result)
+    })
+    // post data
     app.post('/job-applications', async(req, res) =>{
         const application = req.body;
         const result = await jobApplicationCollection.insertOne(application);
