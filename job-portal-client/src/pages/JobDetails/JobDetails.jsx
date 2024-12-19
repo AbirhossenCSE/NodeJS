@@ -9,7 +9,7 @@ const JobDetails = () => {
             <h2 className='text-2xl font-bold'>Job Details for {title} </h2>
             <p>Apply for: {company} </p>
             <p>Deadline: {deadline} </p>
-            <Link to={`/jobApply`}>
+            <Link to={`/jobApply/${_id}`}>
             <button className='btn'>Apply Now</button>
             </Link>
         </div>
