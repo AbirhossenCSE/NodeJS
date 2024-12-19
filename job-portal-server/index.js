@@ -12,58 +12,70 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    }
 });
 
 async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    try {
+        // Connect the client to the server	(optional starting in v4.7)
+        await client.connect();
+        // Send a ping to confirm a successful connection
+        await client.db("admin").command({ ping: 1 });
+        console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
-    // Job related API
-    const jobsCollection = client.db('jobPortal').collection('jobs');
-    const jobApplicationCollection = client.db('jobPortal').collection('Job_application');
+        // Job related API
+        const jobsCollection = client.db('jobPortal').collection('jobs');
+        const jobApplicationCollection = client.db('jobPortal').collection('Job_application');
 
-    app.get('/jobs', async(req, res) =>{
-        const cursor = jobsCollection.find();
-        const result = await cursor.toArray();
-        res.send(result)
-    })
-    // get job by id
-    app.get('/jobs/:id', async(req, res) => {
-        const id = req.params.id;
-        const query = { _id: new ObjectId(id) }
-        const result = await jobsCollection.findOne(query);
-        res.send(result);
-    }) 
+        app.get('/jobs', async (req, res) => {
+            const cursor = jobsCollection.find();
+            const result = await cursor.toArray();
+            res.send(result)
+        })
+        // get job by id
+        app.get('/jobs/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) }
+            const result = await jobsCollection.findOne(query);
+            res.send(result);
+        })
 
-    // Job apllication API
-    
-    // get all data, get one  data, get some data
-    // get data by email {http://localhost:5000/job-applications?email=abir@gmail.com}
-    app.get('/job-applications', async(req, res) => {
-        const email = req.query.email;
-        const query = { applicant_email: email}
-        const result = await jobApplicationCollection.find(query).toArray();
-        res.send(result)
-    })
-    // post data
-    app.post('/job-applications', async(req, res) =>{
-        const application = req.body;
-        const result = await jobApplicationCollection.insertOne(application);
-        res.send(result);
-    })
-  } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
-  }
+        // Job apllication API
+
+        // get all data, get one  data, get some data
+        // get data by email {http://localhost:5000/job-applications?email=abir@gmail.com}
+        app.get('/job-applications', async (req, res) => {
+            const email = req.query.email;
+            const query = { applicant_email: email }
+            const result = await jobApplicationCollection.find(query).toArray();
+
+            // not best way to aggregate data
+            for (const application of result) {
+                console.log(application.job_id)
+                const query1 = { _id: new ObjectId(application.job_id) }
+                const job = await jobsCollection.findOne(query1);
+                if (job) {
+                    application.title = job.title;
+                    application.company = job.company;
+                }
+            }
+
+            res.send(result)
+        })
+        // post data
+        app.post('/job-applications', async (req, res) => {
+            const application = req.body;
+            const result = await jobApplicationCollection.insertOne(application);
+            res.send(result);
+        })
+    } finally {
+        // Ensures that the client will close when you finish/error
+        // await client.close();
+    }
 }
 run().catch(console.dir);
 
