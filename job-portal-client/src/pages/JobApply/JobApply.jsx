@@ -23,10 +23,13 @@ const JobApply = () => {
                             <label className="label">
                                 <span className="label-text">GitHub URL</span>
                             </label>
-                            <input type="url" placeholder="GitHub URL" className="input input-bordered" required />
+                            <input type="url" placeholder="GitHub URL" className="input input-bordered" required />    
+                        </div>
+                        <div className="form-control">
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <span className="label-text">Resume URL</span>
                             </label>
+                            <input type="url" placeholder="Resume URL" className="input input-bordered" required />    
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
