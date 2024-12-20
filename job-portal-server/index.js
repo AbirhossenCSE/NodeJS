@@ -27,12 +27,26 @@ async function run() {
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
-        // Job related API
+
         const jobsCollection = client.db('jobPortal').collection('jobs');
         const jobApplicationCollection = client.db('jobPortal').collection('Job_application');
 
+        // Job related API
+        // // Get jobs
+        // app.get('/jobs', async (req, res) => {
+        //     const cursor = jobsCollection.find();
+        //     const result = await cursor.toArray();
+        //     res.send(result)
+        // })
+        // Get jobs
         app.get('/jobs', async (req, res) => {
-            const cursor = jobsCollection.find();
+            // get by email
+            const email = req.query.email;
+            let query = {};
+            if (email) {
+                query = { hr_email: email }
+            }
+            const cursor = jobsCollection.find(query);
             const result = await cursor.toArray();
             res.send(result)
         })
@@ -43,8 +57,17 @@ async function run() {
             const result = await jobsCollection.findOne(query);
             res.send(result);
         })
+        // create job
+        app.post('/jobs', async (req, res) => {
+            const newJob = req.body;
+            const result = await jobsCollection.insertOne(newJob);
+            res.send(result);
+        })
 
-        // Job apllication API
+
+
+
+        // Job apllication Related API
 
         // get all data, get one  data, get some data
         // get data by email {http://localhost:5000/job-applications?email=abir@gmail.com}
@@ -55,7 +78,6 @@ async function run() {
 
             // not best way to aggregate data
             for (const application of result) {
-                console.log(application.job_id)
                 const query1 = { _id: new ObjectId(application.job_id) }
                 const job = await jobsCollection.findOne(query1);
                 if (job) {
@@ -74,6 +96,8 @@ async function run() {
             const result = await jobApplicationCollection.insertOne(application);
             res.send(result);
         })
+
+
     } finally {
         // Ensures that the client will close when you finish/error
         // await client.close();
