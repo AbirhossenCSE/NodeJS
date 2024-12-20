@@ -38,7 +38,7 @@ const AddJob = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate('/')
+                    navigate('/myPostedJobs')
                 }
 
             })
@@ -109,6 +109,13 @@ const AddJob = () => {
                             <option>EURO</option>
                         </select>
                     </div>
+                </div>
+                {/* application Deadline */}
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Deadline</span>
+                    </label>
+                    <input type="date" name='applicationDeadline' placeholder="Application Deadline" className="input input-bordered" required />
                 </div>
                 {/* Description */}
                 <div className="form-control">
