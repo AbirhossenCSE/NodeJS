@@ -90,6 +90,15 @@ async function run() {
 
             res.send(result)
         })
+
+        // get job application data for applied job
+        app.get('/job-applications/jobs/:job_id', async (req, res) => {
+            const jobId = req.params.job_id;
+            const query = { job_id: jobId }
+            const result = await jobApplicationCollection.find(query).toArray();
+            res.send(result);
+        })
+
         // post job data
         app.post('/job-applications', async (req, res) => {
             const application = req.body;
@@ -118,13 +127,20 @@ async function run() {
 
             res.send(result);
         })
-        // get job application data for applied job
-        app.get('/job-applications/jobs/:job_id', async (req, res) => {
-            const jobId = req.params.job_id;
-            const query = { job_id: jobId }
-            const result = await jobApplicationCollection.find(query).toArray();
+        // update status for job application
+        app.patch('/job-applications/:id', async (req, res) => {
+            const id = req.params.id;
+            const data = req.body;
+            const filter = { _id: new ObjectId(id) };
+            const updateDoc = {
+                $set: {
+                    status: data.status
+                }
+            }
+            const result = await jobApplicationCollection.updateOne(filter, updateDoc);
             res.send(result);
         })
+
 
 
     } finally {
