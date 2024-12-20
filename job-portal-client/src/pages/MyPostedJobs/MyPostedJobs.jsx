@@ -14,6 +14,29 @@ const MyPostedJobs = () => {
     return (
         <div>
             <h2>Posted Jobs: {jobs.length} </h2>
+            <div className="overflow-x-auto">
+                <table className="table">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Job Title</th>
+                            <th>Deadline</th>
+                            <th>Application </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            jobs.map((job, index) => <tr>
+                                <th>{index + 1}</th>
+                                <td>{job.title}</td>
+                                <td>{job.applicationDeadline}</td>
+                                <td>{job.applicationCount}</td>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
