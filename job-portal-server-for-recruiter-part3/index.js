@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser')
 const app = express();
 require('dotenv').config()
 
-// JWT_SECRET=06921d69c53d4122c260e1330fb6006dd75178df8ef9d4cce742e3e9025212495249de9a8d9ede2797ed9ac7453d792c0715ea97afdc356165f9613f2bf737ad
 
 const port = process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
@@ -33,6 +32,19 @@ async function run() {
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
+        // Auth Related API
+        app.post('/jwt', (req, res) => {
+            const user = req.body;
+            const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5h' });
+
+            res
+                .cookie('token', token, {
+                    httpOnly: true,
+                    secure: false
+                })
+                .send({ success: true })
+        })
 
         // jobs related apis
         const jobsCollection = client.db('jobPortal').collection('jobs');
