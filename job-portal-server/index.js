@@ -16,6 +16,28 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser())
 
+// const loger = (req, res, next) => {
+//     console.log('Inside the loger')
+//     next();
+// }
+const verifyToken = (req, res, next) => {
+    // console.log('Inside the verify token', req.cookies)
+    const token = req?.cookies?.token;
+    if (!token) {
+        return res.status(401).send({ message: 'Unauthorised Access' })
+    }
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) =>{
+        if (err) {
+            return res.status(401).send({ message: 'Authorised Access'})
+        }
+        // if valid then go
+        next();
+    })
+    
+}
+
+
+
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.wpavw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -79,13 +101,13 @@ async function run() {
 
         // get all data, get one  data, get some data
         // get data by email {http://localhost:5000/job-applications?email=abir@gmail.com}
-        app.get('/job-applications', async (req, res) => {
+        app.get('/job-applications', verifyToken, async (req, res) => {
             const email = req.query.email;
             const query = { applicant_email: email }
 
             // set cookies
-            console.log('cok cookies', req.cookies);
-            
+            // console.log('cok cookies', req.cookies);
+
             const result = await jobApplicationCollection.find(query).toArray();
 
             // not best way to aggregate data
