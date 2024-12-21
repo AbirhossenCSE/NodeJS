@@ -26,14 +26,15 @@ const verifyToken = (req, res, next) => {
     if (!token) {
         return res.status(401).send({ message: 'Unauthorised Access' })
     }
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) =>{
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
-            return res.status(401).send({ message: 'Authorised Access'})
+            return res.status(401).send({ message: 'Authorised Access' })
         }
+        req.user = decoded;
         // if valid then go
         next();
     })
-    
+
 }
 
 
@@ -107,6 +108,9 @@ async function run() {
 
             // set cookies
             // console.log('cok cookies', req.cookies);
+            if (req.user.email !== req.query.email) {
+                return rs.status(403).send({ message: 'forbidden access' })
+            }
 
             const result = await jobApplicationCollection.find(query).toArray();
 
