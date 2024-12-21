@@ -8,8 +8,11 @@ const app = express();
 const port = process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
-
-app.use(cors());
+// give cookis permission to client site in cors
+app.use(cors({
+    origin: ['http://localhost:5173'],
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser())
 
@@ -79,6 +82,10 @@ async function run() {
         app.get('/job-applications', async (req, res) => {
             const email = req.query.email;
             const query = { applicant_email: email }
+
+            // set cookies
+            console.log('cok cookies', req.cookies);
+            
             const result = await jobApplicationCollection.find(query).toArray();
 
             // not best way to aggregate data
@@ -153,6 +160,7 @@ async function run() {
             const user = req.body;
             const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1h' });
             res
+                // send to client site
                 .cookie('token', token, {
                     httpOnly: true,
                     // set true on production time
