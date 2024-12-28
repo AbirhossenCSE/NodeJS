@@ -31,19 +31,19 @@ const JobApply = () => {
             },
             body: JSON.stringify(jobApplication)
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data.insertedId) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Successfully Apply for this Job",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
-                  navigate('/myApplications')
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Successfully Apply for this Job",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate('/myApplications')
+                }
+            })
 
     }
     return (
