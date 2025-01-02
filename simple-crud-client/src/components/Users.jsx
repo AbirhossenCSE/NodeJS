@@ -6,7 +6,7 @@ const Users = () => {
     const loadedUsers = useLoaderData()
     const [users, setUsers] = useState(loadedUsers)
     const handleDelete = _id => {
-        console.log('delete', _id);
+        // console.log('delete', _id);
         fetch(`http://localhost:5000/users/${_id}`, {
             method: 'DELETE'
         })

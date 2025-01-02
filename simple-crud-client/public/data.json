@@ -1,0 +1,142 @@
+[
+    {
+        "_id": "6769a75472b8fb21660dd528",
+        "foodName": "Beef Tehari",
+        "foodImage": "https://i.ibb.co.com/yQMdvG4/beef-tehari-bengali-style-258218695.webp",
+        "foodCategory": "Rice",
+        "quantity": 15,
+        "price": 8.99,
+        "addBy": {
+            "name": "Md. Abir Hossen",
+            "email": "hossenabir694@gmail.com"
+        },
+        "foodOrigin": "Bangladesh",
+        "description": "A traditional Bangladeshi dish made with fragrant basmati rice, tender beef, and aromatic spices."
+    },
+    {
+        "_id": "6769a75472b8fb21660dd529",
+        "foodName": "Shutki Bhuna",
+        "foodImage": "https://i.ibb.co.com/7zX11rH/Shutki-Bhuna.jpg",
+        "foodCategory": "Fish",
+        "quantity": 8,
+        "price": 6.99,
+        "addBy": {
+            "name": "Md. Abir Hossen",
+            "email": "hossenabir694@gmail.com"
+        },
+        "foodOrigin": "Bangladesh",
+        "description": "A flavorful dish made with dried fish, onions, and an array of traditional Bangladeshi spices."
+    },
+    {
+        "_id": "6769a75472b8fb21660dd530",
+        "foodName": "Kacchi Biryani",
+        "foodImage": "https://i.ibb.co.com/M9KX0Bx/kacci.jpg",
+        "foodCategory": "Rice",
+        "quantity": 20,
+        "price": 10.99,
+        "addBy": {
+            "name": "Md. Abir Hossen",
+            "email": "hossenabir694@gmail.com"
+        },
+        "foodOrigin": "Bangladesh",
+        "description": "A popular Bangladeshi biryani made with marinated mutton, rice, and saffron-infused spices."
+    },
+    {
+        "_id": "6769a75472b8fb21660dd531",
+        "foodName": "Panta Bhat",
+        "foodImage": "https://i.ibb.co.com/nw4Pc1x/Panta-Bhat.jpg",
+        "foodCategory": "Rice",
+        "quantity": 25,
+        "price": 4.99,
+        "addBy": {
+            "name": "Md. Abir Hossen",
+            "email": "hossenabir694@gmail.com"
+        },
+        "foodOrigin": "Bangladesh",
+        "description": "A traditional Bangladeshi dish made with fermented rice, served with fried fish, onions, and green chili."
+    },
+    {
+        "_id": "6769a75472b8fb21660dd532",
+        "foodName": "Shorshe Ilish",
+        "foodImage": "https://i.ibb.co.com/tLSsLzG/shorshe-ilish.webp",
+        "foodCategory": "Fish",
+        "quantity": 12,
+        "price": 14.99,
+        "addBy": {
+            "name": "Md. Abir Hossen",
+            "email": "hossenabir694@gmail.com"
+        },
+        "foodOrigin": "Bangladesh",
+        "description": "A classic Bangladeshi dish of hilsa fish cooked in mustard seed paste and mustard oil."
+    },
+    {
+        "_id": "6769a75472b8fb21660dd533",
+        "foodName": "Chingri Malai Curry",
+        "foodImage": "https://i.ibb.co.com/x10f7Mz/chingrir-malaikari.webp",
+        "foodCategory": "Curry",
+        "quantity": 10,
+        "price": 13.99,
+        "addBy": {
+            "name": "Md. Abir Hossen",
+            "email": "hossenabir694@gmail.com"
+        },
+        "foodOrigin": "Bangladesh",
+        "description": "A creamy curry made with prawns, coconut milk, and aromatic spices."
+    },
+    {
+        "_id": "6769a75472b8fb21660dd534",
+        "foodName": "Dim Bhuna",
+        "foodImage": "https://i.ibb.co.com/Vqg2H7H/Dim-Bhuna.jpg",
+        "foodCategory": "Curry",
+        "quantity": 18,
+        "price": 5.99,
+        "addBy": {
+            "name": "Md. Abir Hossen",
+            "email": "hossenabir694@gmail.com"
+        },
+        "foodOrigin": "Bangladesh",
+        "description": "A spicy egg curry dish made with boiled eggs, onions, and a flavorful masala base."
+    },
+    {
+        "_id": "6769a75472b8fb21660dd535",
+        "foodName": "Begun Bharta",
+        "foodImage": "https://i.ibb.co.com/PMPZWdr/baigan-bharta.webp",
+        "foodCategory": "Vegetarian",
+        "quantity": 22,
+        "price": 3.99,
+        "addBy": {
+            "name": "Md. Abir Hossen",
+            "email": "hossenabir694@gmail.com"
+        },
+        "foodOrigin": "Bangladesh",
+        "description": "A mashed eggplant dish mixed with mustard oil, onions, garlic, and chili."
+    },
+    {
+        "_id": "6769a75472b8fb21660dd536",
+        "foodName": "Pithas (Rice Cakes)",
+        "foodImage": "https://i.ibb.co.com/ChDfqYV/Pithas-Rice-Cakes.webp",
+        "foodCategory": "Snacks",
+        "quantity": 30,
+        "price": 2.99,
+        "addBy": {
+            "name": "Md. Abir Hossen",
+            "email": "hossenabir694@gmail.com"
+        },
+        "foodOrigin": "Bangladesh",
+        "description": "Traditional Bangladeshi rice cakes, often sweetened with molasses or filled with coconut."
+    },
+    {
+        "_id": "6769a75472b8fb21660dd537",
+        "foodName": "Mishti Doi",
+        "foodImage": "https://i.ibb.co.com/swYC8Ys/Mishti-Doi.jpg",
+        "foodCategory": "Dessert",
+        "quantity": 25,
+        "price": 4.49,
+        "addBy": {
+            "name": "Md. Abir Hossen",
+            "email": "hossenabir694@gmail.com"
+        },
+        "foodOrigin": "Bangladesh",
+        "description": "A traditional Bangladeshi dessert made with sweetened fermented yogurt."
+    }
+]
