@@ -41,6 +41,7 @@ const Users2 = () => {
                             });
 
                             // // update the loaded coffee state
+                            // not use
                             // const remainingUsers = users.filter(user => user._id !== id);
                             // setUsers(remainingUsers);
                         }
