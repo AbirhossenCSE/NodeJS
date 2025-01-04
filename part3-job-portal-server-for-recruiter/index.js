@@ -80,10 +80,11 @@ async function run() {
 
 
 
-        // jobs related APIs
+        // jobs related APIs get by email, sort data
         app.get('/jobs', async (req, res) => {
             const email = req.query.email;
             const sort = req.query?.sort;
+            const search = req.query?.search;
 
             let query = {};
             let sortQuery = {};
@@ -91,8 +92,13 @@ async function run() {
             if (email) {
                 query = { hr_email: email }
             }
+            // sort query
             if (sort == 'true') {
                 sortQuery = {'salaryRange.min' : -1}
+            }
+            // search
+            if (search) {
+                query.location = {$regex: search, $options: 'i'};
             }
             const cursor = jobsCollection.find(query).sort(sortQuery);
             const result = await cursor.toArray(sort);
