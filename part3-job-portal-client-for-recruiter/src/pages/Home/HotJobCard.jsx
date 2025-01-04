@@ -23,14 +23,14 @@ const HotJobCard = ({ job }) => {
                     <div className="badge badge-secondary">NEW</div>
                 </h2>
                 <p>{description}</p>
-                {/* <div className='flex gap-2 flex-wrap'>
+                <div className='flex gap-2 flex-wrap'>
                     {
-                        requirements.map((skill, index) => <p
+                        requirements?.map((skill, index) => <p
                             key={index}
                             className='border rounded-md text-center px-2 hover:text-purple-600 hover:bg-gray-400'
                         >{skill}</p>)
                     }
-                </div> */}
+                </div>
                 <div className="card-actions justify-end items-center mt-4">
 
                     <p className='flex items-center'>Salary: <FaDollarSign></FaDollarSign> {salaryRange?.min}- {salaryRange?.max} {salaryRange?.currency}</p>
